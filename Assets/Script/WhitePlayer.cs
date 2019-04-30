@@ -6,7 +6,7 @@ public class WhitePlayer : MonoBehaviour
 {
     // Start is called before the first frame update
     //public GameObject WhitePlayer;
-    //public GameObject BlackPlayer;
+    public GameObject BlackPlayer;
     void Start()
     {
         
@@ -23,16 +23,28 @@ public class WhitePlayer : MonoBehaviour
     void whitePlayerMovement()
         {
         if(Input.GetKeyDown(KeyCode.UpArrow))
-            this.transform.Translate(0f, 2f, 0f);
+            {
+            if((this.gameObject.transform.position + new Vector3(0f, 2f, 0f)) != BlackPlayer.transform.position)
+                this.transform.Translate(0f, 2f, 0f);
+            }
 
         if(Input.GetKeyDown(KeyCode.DownArrow))
-            this.transform.Translate(0f, -2f, 0f);
+            {
+            if((this.gameObject.transform.position + new Vector3(0f, -2f, 0f)) != BlackPlayer.transform.position)
+                this.transform.Translate(0f, -2f, 0f);
+            }
 
         if(Input.GetKeyDown(KeyCode.RightArrow))
-            this.transform.Translate(2f, 0f, 0f);
+            {
+            if((this.gameObject.transform.position + new Vector3(2f, 0f, 0f)) != BlackPlayer.transform.position)
+                this.transform.Translate(2f, 0f, 0f);
+            }
 
         if(Input.GetKeyDown(KeyCode.LeftArrow))
-            this.transform.Translate(-2f, 0f, 0f);
+            {
+            if((this.gameObject.transform.position + new Vector3(-2f, 0f, 0f)) != BlackPlayer.transform.position)
+                this.transform.Translate(-2f, 0f, 0f);
+            }
         }
     
 

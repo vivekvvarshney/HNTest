@@ -5,8 +5,9 @@ using UnityEngine;
 public class BlackPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
-    //public GameObject WhitePlayer;
+    public GameObject WhitePlayer;
     //public GameObject BlackPlayer;
+    
     void Start()
     {
         
@@ -20,18 +21,31 @@ public class BlackPlayer : MonoBehaviour
     }
     void blackPlayerMovement()
         {
+        //if((GameObject.Find("Cube").GetComponent<Material>().color == Color.white))
         if(Input.GetKeyDown(KeyCode.W))
+            {
+            if((this.gameObject.transform.position + new Vector3(0f, 2f, 0f))!=WhitePlayer.transform.position)//player does not go overeach other
             this.transform.Translate(0f, 2f, 0f);
+            }
 
         if(Input.GetKeyDown(KeyCode.S))
+            {
+            if((this.gameObject.transform.position + new Vector3(0f, -2f, 0f))!=WhitePlayer.transform.position)
             this.transform.Translate(0f, -2f, 0f);
+            }
 
         if(Input.GetKeyDown(KeyCode.D))
-            this.transform.Translate(2f, 0f, 0f);
+            {
+            if((this.gameObject.transform.position + new Vector3(2f, 0f, 0f))!=WhitePlayer.transform.position)
+            this.transform.Translate(2f, 0f, 0f);}
 
         if(Input.GetKeyDown(KeyCode.A))
+            {
+            if((this.gameObject.transform.position + new Vector3(-2f, 0f, 0f))!=WhitePlayer.transform.position)
             this.transform.Translate(-2f, 0f, 0f);
+            }
         }
+    //void OnCollision
    
     
 
