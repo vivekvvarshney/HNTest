@@ -23,12 +23,12 @@ public class BlockCube : MonoBehaviour
         //this.GetComponent<Renderer>().material = coll.gameObject.GetComponent<Renderer>().material;
         Debug.Log("Collision with: " + this.gameObject.name);
 
-        rend = GetComponent<Renderer>();
-        if(coll.gameObject == White)
+        rend = this.gameObject.GetComponent<Renderer>();
+        if(coll.gameObject == White && this.gameObject.GetComponent<Renderer>().material.color==Color.black)
             {
                 rend.material.color = Color.white;
             }
-        if(coll.gameObject == Black)
+        if(coll.gameObject == Black && this.gameObject.GetComponent<Renderer>().material.color == Color.white)
             {
                 rend.material.color = Color.black;
             }

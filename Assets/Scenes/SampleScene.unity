@@ -564,7 +564,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f356a0788b5cd443af4837149e634d7, type: 2}
+  - {fileID: 2100000, guid: 1263947065d0c184086f1bdb2a96c441, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -752,6 +752,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textUI: {fileID: 1965772255}
+  limitX: 0
+  limitY: 0
+  values: 
+  length: 0
+  number_of_rows: 0
+  number_of_columns: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1433,7 +1439,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1263947065d0c184086f1bdb2a96c441, type: 2}
+  - {fileID: 2100000, guid: 8f356a0788b5cd443af4837149e634d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

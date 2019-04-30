@@ -10,6 +10,9 @@ public class HandleTextFile:MonoBehaviour
     public float limitX;
     public float limitY;
     public char[] values;
+    public int length;
+    public int number_of_rows;
+    public int number_of_columns;
     //[MenuItem("Tools/Read file")]
     public void Start()
         {
@@ -25,6 +28,9 @@ public class HandleTextFile:MonoBehaviour
             Debug.Log("text : " + reader.ReadToEnd());
             Debug.Log("text without EOL: " + reader.ReadToEnd().Replace("\n", ""));
             //generateGrid(reader.ReadToEnd().Replace("\n", ""));
+            //length = reader.ReadToEnd().Replace("\n", "").Length;
+            //number_of_rows = reader.ReadToEnd().ToCharArray().Count(c => c == '\n');
+            //number_of_columns = reader.ReadToEnd().IndexOf('\n', 0, 1);
             reader.Close();
         }
         void generateGrid(string s)
