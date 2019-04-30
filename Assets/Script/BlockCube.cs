@@ -7,6 +7,7 @@ public class BlockCube : MonoBehaviour
     // Start is called before the first frame update
     //public Material White;
     //public Material Black;
+    Renderer rend;
     void Start()
     {
         
@@ -19,7 +20,8 @@ public class BlockCube : MonoBehaviour
     }
     void OnCollisionEnter(Collision coll)
         {
-        this.GetComponent<Renderer>().material = coll.gameObject.GetComponent<Material>();
+        this.GetComponent<Renderer>().material = coll.gameObject.GetComponent<Renderer>().material;
         Debug.Log("Collision with: " + this.gameObject.name);
         }
+    
 }
