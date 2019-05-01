@@ -20,8 +20,11 @@ public class WhitePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
-    whitePlayerMovement();
+    if(!GameObject.Find("WhiteHome").GetComponent<WhiteHome>().gameEnd) //&& GameObject.Find("WhiteHome").GetComponent<WhiteHome>().curentTurn)
+        {
+        whitePlayerMovement();
+        //GameObject.Find("WhiteHome").GetComponent<WhiteHome>().curentTurn = false;
+        }
     }
     
         
@@ -58,7 +61,7 @@ public class WhitePlayer : MonoBehaviour
         Ray playerToCube = new Ray(this.transform.position, direction);
         if(Physics.Raycast(playerToCube, out hit))
             {
-            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.black)
+            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.black || hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.yellow)
                 return true;
             }
         return false;

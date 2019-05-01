@@ -20,6 +20,7 @@ public class BlackHome : MonoBehaviour
         {
         Debug.Log("black wins");
         t1.text = "black Wins";
+        GameObject.Find("WhiteHome").GetComponent<WhiteHome>().gameEnd = true;
         }
     
     }

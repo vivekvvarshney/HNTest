@@ -21,7 +21,11 @@ public class BlackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    blackPlayerMovement();
+    if(!GameObject.Find("WhiteHome").GetComponent<WhiteHome>().gameEnd)// && !GameObject.Find("WhiteHome").GetComponent<WhiteHome>().curentTurn)
+        {
+        blackPlayerMovement();
+        //GameObject.Find("WhiteHome").GetComponent<WhiteHome>().curentTurn = true;
+        }
     
     }
     void blackPlayerMovement()
@@ -57,7 +61,7 @@ public class BlackPlayer : MonoBehaviour
         Ray playerToCube = new Ray(this.transform.position, direction);
         if(Physics.Raycast(playerToCube, out hit))
             {
-            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
+            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white || hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.grey)
                 return true;
             }
         return false;

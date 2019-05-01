@@ -27,7 +27,8 @@ public class HandleTextFile : MonoBehaviour
         StreamReader reader = new StreamReader(path);
         //Debug.Log(reader.ReadToEnd());
         //values=reader.ReadToEnd().Replace("\n","").ToCharArray();
-        textUI.text = reader.ReadToEnd().Replace("\n", "");
+        //textUI.text = reader.ReadToEnd().Replace("\n", "");
+        //textUI.text = "Instructions:\nBlack circle can move only to the white tile and has to reach Grey tile to win\nWhite circle can move only to the black tile and has to reach Yellow tile to win";
         Debug.Log("text : " + reader.ReadToEnd());
         Debug.Log("text without EOL: " + reader.ReadToEnd().Replace("\n", ""));
         //generateGrid(reader.ReadToEnd().Replace("\n", ""));
@@ -35,7 +36,7 @@ public class HandleTextFile : MonoBehaviour
         //number_of_rows = reader.ReadToEnd().ToCharArray().Count(c => c == '\n');
         //number_of_columns = reader.ReadToEnd().IndexOf('\n', 0, 1);
         reader.Close();
-        return textUI.text;
+        return reader.ReadToEnd().Replace("\n", "").ToString();
         }
     void generateGrid(string s)
         {
