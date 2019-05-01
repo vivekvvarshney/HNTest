@@ -7,6 +7,10 @@ public class BlackPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject WhitePlayer;
+    Vector3 Up = new Vector3(0f, 2f, 0f);
+    Vector3 Down = new Vector3(0f, -2f, 0f);
+    Vector3 Left = new Vector3(-2f, 0f, 0f);
+    Vector3 Right = new Vector3(2f, 0f, 0f);
     //public GameObject BlackPlayer;
     bool canMoveToNext=true;
     void Start()
@@ -23,51 +27,34 @@ public class BlackPlayer : MonoBehaviour
     void blackPlayerMovement()
         {
         //if((GameObject.Find("Cube").GetComponent<Material>().color == Color.white))
-        if(Input.GetKeyDown(KeyCode.W) && canMoveUp())
+        if(Input.GetKeyDown(KeyCode.W) && canMove(Up))
             {
-            if((this.gameObject.transform.position + new Vector3(0f, 2f, 0f))!=WhitePlayer.transform.position)//player does not go overeach other
-            this.transform.Translate(0f, 2f, 0f);
+            if((this.gameObject.transform.position + Up)!=WhitePlayer.transform.position)//player does not go overeach other
+            this.transform.Translate(Up);
             }
 
-        if(Input.GetKeyDown(KeyCode.S) && canMoveDown())
+        if(Input.GetKeyDown(KeyCode.S) && canMove(Down))
             {
-            if((this.gameObject.transform.position + new Vector3(0f, -2f, 0f))!=WhitePlayer.transform.position)
-            this.transform.Translate(0f, -2f, 0f);
+            if((this.gameObject.transform.position + Down)!=WhitePlayer.transform.position)
+            this.transform.Translate(Down);
             }
 
-        if(Input.GetKeyDown(KeyCode.D) && canMoveRight())
+        if(Input.GetKeyDown(KeyCode.D) && canMove(Right))
             {
-            if((this.gameObject.transform.position + new Vector3(2f, 0f, 0f))!=WhitePlayer.transform.position)
-            this.transform.Translate(2f, 0f, 0f);}
+            if((this.gameObject.transform.position + Right)!=WhitePlayer.transform.position)
+            this.transform.Translate(Right);}
 
-        if(Input.GetKeyDown(KeyCode.A) && canMoveLeft())
+        if(Input.GetKeyDown(KeyCode.A) && canMove(Left))
             {
-            if((this.gameObject.transform.position + new Vector3(-2f, 0f, 0f))!=WhitePlayer.transform.position)
-            this.transform.Translate(-2f, 0f, 0f);
+            if((this.gameObject.transform.position + Left)!=WhitePlayer.transform.position)
+            this.transform.Translate(Left);
             }
         }
-    void OnCollisionEnter(Collision col)
-        {
-        if(col.gameObject.GetComponent<Material>().color == Color.black)
-            {
-            canMoveToNext = false;
-            }
-        }
-    bool canMoveLeft()
+    
+    bool canMove(Vector3 direction)
         {
         RaycastHit hit;
-        Ray playerToCube = new Ray(this.transform.position, new Vector3(-2f, 0f, 0f));
-        if(Physics.Raycast(playerToCube, out hit))
-            {
-            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
-            return true;
-            }
-        return false;
-        }
-    bool canMoveRight()
-        {
-        RaycastHit hit;
-        Ray playerToCube = new Ray(this.transform.position, new Vector3(2f, 0f, 0f));
+        Ray playerToCube = new Ray(this.transform.position, direction);
         if(Physics.Raycast(playerToCube, out hit))
             {
             if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
@@ -75,28 +62,10 @@ public class BlackPlayer : MonoBehaviour
             }
         return false;
         }
-    bool canMoveUp()
-        {
-        RaycastHit hit;
-        Ray playerToCube = new Ray(this.transform.position, new Vector3(0f, 2f, 0f));
-        if(Physics.Raycast(playerToCube, out hit))
-            {
-            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
-                return true;
-            }
-        return false;
-        }
-    bool canMoveDown()
-        {
-        RaycastHit hit;
-        Ray playerToCube = new Ray(this.transform.position, new Vector3(0f, -2f, 0f));
-        if(Physics.Raycast(playerToCube, out hit))
-            {
-            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.white)
-                return true;
-            }
-        return false;
-        }
+    //void OnCollisionEnter(Collision col)
+    //    {
+    //    col.gameObject.GetComponent<Renderer>().material.color = Color.black;
+    //    }
    
     
 

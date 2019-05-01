@@ -7,6 +7,11 @@ public class WhitePlayer : MonoBehaviour
     // Start is called before the first frame update
     //public GameObject WhitePlayer;
     public GameObject BlackPlayer;
+    
+    Vector3 Up = new Vector3(0f, 2f, 0f);    
+    Vector3 Down = new Vector3(0f, -2f, 0f);    
+    Vector3 Left = new Vector3(-2f, 0f, 0f);    
+    Vector3 Right = new Vector3(2f, 0f, 0f);
     void Start()
     {
         
@@ -22,34 +27,35 @@ public class WhitePlayer : MonoBehaviour
         
     void whitePlayerMovement()
         {
-        if(Input.GetKeyDown(KeyCode.UpArrow) && canMoveUp())
+        if(Input.GetKeyDown(KeyCode.UpArrow) && canMove(Up))
             {
-            if((this.gameObject.transform.position + new Vector3(0f, 2f, 0f)) != BlackPlayer.transform.position)
-                this.transform.Translate(0f, 2f, 0f);
+            if((this.gameObject.transform.position + Up) != BlackPlayer.transform.position)
+                this.transform.Translate(Up);
             }
 
-        if(Input.GetKeyDown(KeyCode.DownArrow) && canMoveDown())
+        if(Input.GetKeyDown(KeyCode.DownArrow) && canMove(Down))
             {
-            if((this.gameObject.transform.position + new Vector3(0f, -2f, 0f)) != BlackPlayer.transform.position)
-                this.transform.Translate(0f, -2f, 0f);
+            if((this.gameObject.transform.position + Down) != BlackPlayer.transform.position)
+                this.transform.Translate(Down);
             }
 
-        if(Input.GetKeyDown(KeyCode.RightArrow) && canMoveRight())
+        if(Input.GetKeyDown(KeyCode.RightArrow) && canMove(Right))
             {
-            if((this.gameObject.transform.position + new Vector3(2f, 0f, 0f)) != BlackPlayer.transform.position)
-                this.transform.Translate(2f, 0f, 0f);
+            if((this.gameObject.transform.position + Right) != BlackPlayer.transform.position)
+                this.transform.Translate(Right);
             }
 
-        if(Input.GetKeyDown(KeyCode.LeftArrow) && canMoveLeft())
+        if(Input.GetKeyDown(KeyCode.LeftArrow) && canMove(Left))
             {
-            if((this.gameObject.transform.position + new Vector3(-2f, 0f, 0f)) != BlackPlayer.transform.position)
-                this.transform.Translate(-2f, 0f, 0f);
+            if((this.gameObject.transform.position + Left) != BlackPlayer.transform.position)
+                this.transform.Translate(Left);
             }
         }
-    bool canMoveLeft()
+    
+    bool canMove(Vector3 direction)
         {
         RaycastHit hit;
-        Ray playerToCube = new Ray(this.transform.position, new Vector3(-2f, 0f, 0f));
+        Ray playerToCube = new Ray(this.transform.position, direction);
         if(Physics.Raycast(playerToCube, out hit))
             {
             if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.black)
@@ -57,38 +63,8 @@ public class WhitePlayer : MonoBehaviour
             }
         return false;
         }
-    bool canMoveRight()
-        {
-        RaycastHit hit;
-        Ray playerToCube = new Ray(this.transform.position, new Vector3(2f, 0f, 0f));
-        if(Physics.Raycast(playerToCube, out hit))
-            {
-            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.black)
-                return true;
-            }
-        return false;
-        }
-    bool canMoveUp()
-        {
-        RaycastHit hit;
-        Ray playerToCube = new Ray(this.transform.position, new Vector3(0f, 2f, 0f));
-        if(Physics.Raycast(playerToCube, out hit))
-            {
-            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.black)
-                return true;
-            }
-        return false;
-        }
-    bool canMoveDown()
-        {
-        RaycastHit hit;
-        Ray playerToCube = new Ray(this.transform.position, new Vector3(0f, -2f, 0f));
-        if(Physics.Raycast(playerToCube, out hit))
-            {
-            if(hit.transform.gameObject.GetComponent<Renderer>().material.color == Color.black)
-                return true;
-            }
-        return false;
-        }
-
+    //void OnCollisionEnter(Collision col)
+    //    {
+    //    col.gameObject.GetComponent<Renderer>().material.color = Color.white;
+    //    }
 }
